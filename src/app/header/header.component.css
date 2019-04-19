@@ -1,0 +1,13 @@
+li a{
+    color: darkcyan;
+    font-size: 18px;
+}
+.navbar-brand{
+    color:brown;
+    font-size: 20px;
+}
+.navbar-default .navbar-nav>.active>a{
+    color: currentColor!important;
+    background-color: khaki!important;
+
+}

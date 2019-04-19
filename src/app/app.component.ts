@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { URL } from 'url';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  loadedFeature = 'recipe';
+  loadedFeature = '';
 
   onNavigate(feature: string) {
-    this.loadedFeature = feature;
+   if(feature === 'recipes'){
+    document.getElementsByTagName("body")[0].style.backgroundImage = "url('../assets/imgs/recipes-bg.jpg')";
+   }else if(feature === 'shoppingList'){
+    document.getElementsByTagName("body")[0].style.backgroundImage = "url('../assets/imgs/list-bg.jpg')";
+   }else{
+    document.getElementsByTagName("body")[0].style.backgroundImage = "url('../assets/imgs/bg.jpg')";
+   }
   }
 }
