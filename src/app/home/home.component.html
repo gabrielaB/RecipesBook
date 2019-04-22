@@ -1,3 +1,12 @@
-<div id="input-div" [style]="getDynamicHeight()">
-<input type="test" placeholder="Search in reciipes by product"/>
-</div>
+<div id="input-div" class="input-group" [style]="getDynamicHeight()">
+        <input type="text"
+         placeholder="Search in reciipes by product"
+          class="form-control"
+          [(ngModel)]="searchText"
+          name="text" />
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit" (click)=search()>
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </div>
+    </div>
