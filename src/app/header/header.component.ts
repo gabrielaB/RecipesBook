@@ -6,9 +6,24 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls:['./header.component.css']
 })
 export class HeaderComponent {
-  @Output() selectedComponent = new EventEmitter<string>();
 
-  featureSelected(feature: string){
-    this.selectedComponent.emit(feature);
-  }
+//   constructor(private dataStorageService: DataStorageService,
+//     private authService: AuthService) {
+// }
+//   onSaveData() {
+//     this.dataStorageService.storeRecipes()
+//       .subscribe(
+//         (response: Response) => {
+//           console.log(response);
+//         }
+//       );
+//   }
+
+//   onFetchData() {
+//     this.dataStorageService.getRecipes();
+//   }
+
+//   onLogout() {
+//     this.authService.logout();
+//   }
 }

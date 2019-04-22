@@ -5,10 +5,14 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-5">
     <app-recipe-item
       *ngFor="let recipeEl of recipes; let i = index"
       [recipe]="recipeEl"
-      [index]="i" (click)="test(i)"></app-recipe-item>
+      [index]="i"></app-recipe-item>
+  </div>
+  <div class="col col-md-5">
+    <router-outlet></router-outlet>
   </div>
 </div>
+
