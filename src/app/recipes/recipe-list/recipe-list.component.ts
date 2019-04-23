@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
+import { AuthGuard } from 'src/app/auth/auth-guard.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,7 +16,8 @@ export class RecipeListComponent implements OnInit {
 
   constructor(private recipeService: RecipeService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private guard: AuthGuard) {
   }
 
   ngOnInit() {

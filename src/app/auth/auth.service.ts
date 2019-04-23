@@ -1,50 +1,66 @@
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/switchMap';
+import { UserComponent } from '../user/user.component';
 
 @Injectable()
 export class AuthService {
   token: string;
+  // user: BehaviorSubject<UserComponent> = new BehaviorSubject(null)
+  user: UserComponent;
 
-  constructor(private router: Router) {}
-
-  signupUser(email: string, password: string) {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .catch(
-        error => console.log(error)
-      )
+  constructor(
+    private router: Router
+   ) {
   }
 
-  signinUser(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(
-        response => {
-          this.router.navigate(['/']);
-          firebase.auth().currentUser.getToken()
-            .then(
-              (token: string) => this.token = token
-            )
-        }
-      )
-      .catch(
-        error => console.log(error)
-      );
-  }
 
-  logout() {
-    firebase.auth().signOut();
-    this.token = null;
-  }
+signupUser(email: string, password: string) {
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then(r => {
+    this.router.navigate(['/signin']);
+  })
+    .catch(
+      error => console.log(error)
+    )
+}
 
-  getToken() {
-    firebase.auth().currentUser.getToken()
-      .then(
-        (token: string) => this.token = token
-      );
-    return this.token;
-  }
+signinUser(email: string, password: string) {
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(
+      response => {
+        this.router.navigate(['/user']);
+        console.log(firebase.auth().currentUser)
+      
+        firebase.auth().currentUser.getIdToken()
+          .then(
+            (token: string) => this.token = token
+          )
+      }
+    )
+    .catch(
+      error => console.log(error)
+    );
+}
 
-  isAuthenticated() {
-    return this.token != null;
-  }
+logout() {
+  firebase.auth().signOut();
+  this.token = null;
+}
+
+getToken() {
+  firebase.auth().currentUser.getIdToken()
+    .then(
+      (token: string) => this.token = token
+    );
+  return this.token;
+}
+
+isAuthenticated() {
+  return this.token != null;
+}
 }

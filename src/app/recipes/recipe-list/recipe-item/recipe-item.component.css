@@ -1,0 +1,14 @@
+#recipe-div{
+    display: inline-flex;
+    background-color: white;
+}
+.list-group-item{
+    border: none;
+    background-color: transparent;
+}
+#icon-span{
+    padding: 15px;
+}
+.pull-right{
+    padding-left: 40px;
+}

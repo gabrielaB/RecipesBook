@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Recipe } from '../../recipe.model';
+import { AuthGuard } from 'src/app/auth/auth-guard.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -10,7 +11,15 @@ import { Recipe } from '../../recipe.model';
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
   @Input() index: number;
+  myRecipes: Recipe[];
+
+  constructor(private guard: AuthGuard){
+    
+  }
 
   ngOnInit() {
+  }
+  saveAsFavourite(recipe){
+    this.myRecipes.push(recipe);
   }
 }

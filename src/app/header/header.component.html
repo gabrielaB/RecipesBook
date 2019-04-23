@@ -12,16 +12,16 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <ng-template [ngIf]="!authService.isAuthenticated()">
-          <li><a routerLink="/signup">Register</a></li>
-          <li><a routerLink="/signin">Login</a></li>
+          <li><a routerLink="/signup" (click)="featureSelected('register')">Register</a></li>
+          <li><a routerLink="/signin" (click)="featureSelected('login')">Login</a></li>
         </ng-template>
 
         <li><a
           style="cursor: pointer;"
           (click)="onLogout()"
-          *ngIf="authService.isAuthenticated()">Logout</a></li>
+          *ngIf="guard.canActivate()">Logout</a></li>
 
-        <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
+        <li class="dropdown" appDropdown   *ngIf="guard.canActivate()">
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>

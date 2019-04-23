@@ -3,6 +3,6 @@
     justify-content: center;
     align-items: center;
 }
-input{
+.input-group .form-control{
     width: 55%;
 }
