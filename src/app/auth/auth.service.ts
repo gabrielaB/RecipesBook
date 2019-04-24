@@ -48,6 +48,7 @@ signinUser(email: string, password: string) {
 logout() {
   firebase.auth().signOut();
   this.token = null;
+  this.router.navigate(['/home']);
 }
 
 getToken() {

@@ -11,6 +11,7 @@
         <li routerLinkActive="active"><a routerLink="/shopping-list" (click)="featureSelected('shoppingList')">Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/user" (click)="featureSelected('user')">My Recipes</a></li>
         <ng-template [ngIf]="!authService.isAuthenticated()">
           <li><a routerLink="/signup" (click)="featureSelected('register')">Register</a></li>
           <li><a routerLink="/signin" (click)="featureSelected('login')">Login</a></li>
@@ -20,14 +21,6 @@
           style="cursor: pointer;"
           (click)="onLogout()"
           *ngIf="guard.canActivate()">Logout</a></li>
-
-        <!-- <li class="dropdown" appDropdown   *ngIf="guard.canActivate()">
-          <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
-            <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
-          </ul>
-        </li> -->
       </ul>
     </div>
   </div>
