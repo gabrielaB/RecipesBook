@@ -11,8 +11,8 @@
         <li routerLinkActive="active"><a routerLink="/shopping-list" (click)="featureSelected('shoppingList')">Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="authService.isAuthenticated() && !authService.isAdmin()"><a routerLink="/user" (click)="featureSelected('user')">My Recipes</a></li>
-        <li *ngIf="authService.isAuthenticated() && authService.isAdmin()"><a routerLink="/statisctics" (click)="featureSelected('statistics')">Statistics</a></li>
+        <li *ngIf="guard.canActivate()"><a routerLink="/user" (click)="featureSelected('user')">My Recipes</a></li>
+        <!-- <li *ngIf="!guard.canActivate()"><a routerLink="/statisctics" (click)="featureSelected('statistics')">Statistics</a></li> -->
         <ng-template [ngIf]="!authService.isAuthenticated()">
           <li><a routerLink="/signup" (click)="featureSelected('register')">Register</a></li>
           <li><a routerLink="/signin" (click)="featureSelected('login')">Login</a></li>

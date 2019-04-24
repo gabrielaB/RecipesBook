@@ -13,10 +13,11 @@ import { User } from '../user/user.model';
 export class AuthService {
   token: string;
   user: User;
+  isAdmin=false;
 
   constructor(
     private router: Router,
-    private userService:UserService) {}
+    private userService: UserService) { }
 
 
   signupUser(email: string, password: string) {
@@ -32,14 +33,9 @@ export class AuthService {
   signinUser(email: string, password: string) {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
-        response => {
-          if(this.isAdmin){
-            this.router.navigate(['/statistics']);
-          }else{
-            this.router.navigate(['/user']);
-          }
-
-
+        (response) => {
+         
+          this.router.navigate(['/home']);
           firebase.auth().currentUser.getIdToken()
             .then(
               (token: string) => this.token = token
@@ -69,20 +65,21 @@ export class AuthService {
     return this.token != null;
   }
 
-  isAdmin() {
+  isUserAdmin() {
+
     this.userService.getUsers()
       .subscribe(res => {
-        console.log(res)
         for (let u of res.users) {
           if (u.uid === firebase.auth().currentUser.uid) {
             this.user = u;
+            if(u.isAdmin){
+            this.isAdmin = true;
+            }else{
+             this.isAdmin= false;
+            }
           }
         }
       })
-      if(this.user.uid){
-        return true;
-      }else{
-        return false
-      }
+      return this.isAdmin;
   }
 }
