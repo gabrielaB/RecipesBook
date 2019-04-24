@@ -10,7 +10,6 @@ import { UserComponent } from '../user/user.component';
 @Injectable()
 export class AuthService {
   token: string;
-  // user: BehaviorSubject<UserComponent> = new BehaviorSubject(null)
   user: UserComponent;
 
   constructor(
@@ -34,7 +33,6 @@ signinUser(email: string, password: string) {
     .then(
       response => {
         this.router.navigate(['/user']);
-        console.log(firebase.auth().currentUser)
       
         firebase.auth().currentUser.getIdToken()
           .then(

@@ -25,11 +25,10 @@ export class RecipeEditComponent implements OnInit {
         (params: Params) => {
           this.id = +params['id'];
           this.editMode = params['id'] != null;
-          this.initForm();
+           this.initForm();
         }
       );
   }
-
   onSubmit() {
     const newRecipe = new Recipe(
       this.recipeForm.value['name'],
@@ -37,9 +36,10 @@ export class RecipeEditComponent implements OnInit {
       this.recipeForm.value['imagePath'],
       this.recipeForm.value['ingredients']);
     if (this.editMode) {
-      this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+      console.log(this.editMode)
+      // this.recipeService.updateRecipe(this.id, this.recipeForm.value);
     } else {
-      this.recipeService.addRecipe(this.recipeForm.value);
+      // this.recipeService.addRecipe(this.recipeForm.value);
     }
     this.onCancel();
   }
