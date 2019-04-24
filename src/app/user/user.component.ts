@@ -25,12 +25,12 @@ export class UserComponent implements OnInit {
       .subscribe(res => {
         for (let u of res.users) {
           if (u.uid === firebase.auth().currentUser.uid) {
-               this.user = u;
+            this.user = u;
           }
         }
-        if(this.user.recipes != undefined && this.user.recipes.length){
+        if (this.user.recipes != undefined && this.user.recipes.length) {
           this.recipes = this.user.recipes
-     }
+        }
       })
   }
 }

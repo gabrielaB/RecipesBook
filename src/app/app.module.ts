@@ -26,6 +26,7 @@ import { UserComponent } from './user/user.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { UserService } from './user/user.service';
 import { RecipeItemFavouriteComponent } from './recipes/recipe-list/recipe-item-favourite/recipe-item-favourite.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { RecipeItemFavouriteComponent } from './recipes/recipe-list/recipe-item-
     SigninComponent,
     SignupComponent,
     UserComponent,
-    RecipeItemFavouriteComponent
+    RecipeItemFavouriteComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
