@@ -25,6 +25,7 @@ export class RecipeListComponent implements OnInit {
     this.searchText = this.route
       .snapshot
       .params['search'];
+
     this.recipeService.getRecipes()
       .subscribe(res => {
         if (this.searchText != undefined) {

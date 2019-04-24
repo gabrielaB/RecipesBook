@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ResolveStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from './user.service';
 import { User } from './user.model';
 import * as firebase from 'firebase/app';
+import { Recipe } from '../recipes/recipe.model';
 
 @Component({
   selector: 'app-user',
@@ -12,22 +13,24 @@ import * as firebase from 'firebase/app';
 
 export class UserComponent implements OnInit {
   users: User[]
-  user: User
+  user: User;
+  recipes: Recipe[];
 
   constructor(
-    private router: Router,
     private userService: UserService) {
   }
 
   ngOnInit() {
-
-   this.userService.getUsers()
-   .subscribe(res => {
-    this.users = res.users;
-
-     console.log(res)
-   })
-     
+    this.userService.getUsers()
+      .subscribe(res => {
+        for (let u of res.users) {
+          if (u.uid === firebase.auth().currentUser.uid) {
+               this.user = u;
+          }
+        }
+        if(this.user.recipes != undefined && this.user.recipes.length){
+          this.recipes = this.user.recipes
+     }
+      })
   }
-
 }
