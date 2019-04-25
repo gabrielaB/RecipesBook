@@ -28,7 +28,6 @@ import { UserService } from './user/user.service';
 import { RecipeItemFavouriteComponent } from './recipes/recipe-list/recipe-item-favourite/recipe-item-favourite.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +53,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule       
   ],
   providers: [
     ShoppingListService,
